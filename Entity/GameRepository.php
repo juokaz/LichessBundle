@@ -196,9 +196,10 @@ class GameRepository extends ObjectRepository implements Model\GameRepository
      **/
     public function createByUserQuery(User $user)
     {
-        return $this->createQueryBuilder('g')
-            ->where('g.userIds = ?1')
-            ->setParameter(1, (string) $user->getId());
+        $qb = $this->createQueryBuilder('g');
+
+        return $qb->where($qb->expr()->like('g.userIds', '?1'))
+            ->setParameter(1, '%' . $user->getId() . '%');
     }
 
     /**
