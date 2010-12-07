@@ -26,7 +26,7 @@ abstract class Player {
 
     protected $pieces;
 
-    protected $isOfferingDraw = null;
+    protected $isOfferingDraw = false;
 
     protected $game;
 
@@ -58,7 +58,7 @@ abstract class Player {
      */
     public function setIsOfferingDraw($isOfferingDraw)
     {
-        $this->isOfferingDraw = $isOfferingDraw ?: null;
+        $this->isOfferingDraw = $isOfferingDraw ?: false;
     }
 
     public function canOfferDraw()
