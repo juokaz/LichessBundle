@@ -25,14 +25,14 @@ class Pawn extends Piece implements Model\Pawn
         $dy = 'white' === $this->color ? 1 : -1;
 
         $key = Board::posToKey($x, $y+$dy);
-        if(!$this->board->hasPieceByKey($key)) {
+        if(!$this->board->hasPieceByKey($key) && $this->board->getSquareByKey($key)) {
             $keys[] = $key;
         }
 
         if (!$this->hasMoved() && !empty($keys))
         {
             $key = Board::posToKey($x, $y+(2*$dy));
-            if(!$this->board->hasPieceByKey($key)) {
+            if(!$this->board->hasPieceByKey($key) && $this->board->getSquareByKey($key)) {
                 $keys[] = $key;
             }
         }
