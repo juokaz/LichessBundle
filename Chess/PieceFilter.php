@@ -63,7 +63,7 @@ class PieceFilter
 
   public static function filterType($pieces, $type)
   {
-      return $this->filterClass($pieces, ucfirst($type));
+      return self::filterClass($pieces, ucfirst($type));
   }
 
   // remove asked class
