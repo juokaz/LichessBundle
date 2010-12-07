@@ -25,15 +25,15 @@
             <ul class="lichess_social"></ul>
             <div class="footer">
                 <div class="right">
-                    <a href="http://twitter.com/#!/ornicar">twitter.com/ornicar</a> | <a href="http://github.com/ornicar">github.com/ornicar</a><br />
+                    <a href="http://twitter.com/juokaz">twitter.com/juokaz</a> | <a href="http://github.com/juokaz">github.com/juokaz</a><br />
                     {% trans "Contact" %}: <span class="js_email"></span><br />
                     <a href="{% path "lichess_about" %}" class="blank_if_play">{% trans "Learn more about Lichess" %}</a>
                 </div>
                 <div class="nb_connected_players" data-url="{% path "lichess_nb_players" %}">
                     {% trans "%nb% connected players" with["%nb%": _view.lichess.nbConnectedPlayers] %}
                 </div>
-                Get <a href="http://github.com/ornicar/lichess" target="_blank" title="See what's inside, fork and contribute">source code</a> or give <a href="{% path "forum_category_show" with ["slug": "lichess-feedback"] %}" title="Having a suggestion, feature request or bug report? Let me know">feedback</a> or <a href="{% path "lichess_translate" %}">help translate Lichess</a><br />
-                {% trans "Open Source software built with %php%, %symfony% and %jqueryui%" with['%php%': 'PHP 5.3', '%symfony%': '<a href="http://symfony-reloaded.org" target="_blank">Symfony2</a>', '%jqueryui%': '<a href="http://jqueryui.com/" target="_blank">jQuery UI</a>'] %}<br />
+                {% trans "Open Source software built with %php%, %symfony%, %doctrine% and %jqueryui%" with['%php%': 'PHP 5.3', '%symfony%': '<a href="http://symfony-reloaded.org" target="_blank">Symfony2</a>', '%jqueryui%': '<a href="http://jqueryui.com/" target="_blank">jQuery UI</a>', '%doctrine%': '<a href="http://www.doctrine-project.org" target="_blank">Doctrine 2</a>'] %}<br />
+                {% trans "Fork of original %lichess% game to showcase compatibility with Microsoft Web technologies" with['%lichess%': '<a href="http://lichess.org" target="_blank">Lichess</a>'] %}<br />
             </div>
         </div>
         {% if _view.lichess.loadAverage > 0 %}
@@ -47,7 +47,6 @@
             <div class="lichess_language" data-path="{% path "lichess_locale_links" %}">
                 <span class="s16">{{ _view.locale.localeName }}</span>
             </div>
-            <a class="s16 goto_forum goto_nav blank_if_play" title="{% trans "Talk about chess and discuss lichess features in the forum" %}" href="{% path "forum_index" %}">{% trans "Forum" %}</a>
             <a class="s16 goto_gamelist goto_nav blank_if_play" title="{% trans "See the games being played in real time" %}" href="{% path "lichess_list_current" %}">{% trans "Games" %}</a>
             <a class="s16 goto_userlist goto_nav blank_if_play" title="{% trans "Chess players" %}" href="{% path "doctrine_user_user_list" %}">{% trans "People" %}</a>
             {% endblock %}

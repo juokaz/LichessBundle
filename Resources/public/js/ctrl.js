@@ -45,7 +45,7 @@ $(function() {
         $(this).find('ul').fadeOut(300);
     });
 
-    $('.js_email').text(['thibault.', 'duplessis@', 'gmail.com'].join(''));
+    $('.js_email').text(['juozas', '@', 'juokaz.com'].join(''));
 
     $.fn.tipsy && $('a, input, label, div.lichess_server').not('.notipsy').tipsy({fade: true});
 
