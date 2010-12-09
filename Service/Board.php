@@ -48,7 +48,7 @@ class Board extends Service
             $opponent->addEventToStack(array('type' => 'possible_moves', 'possible_moves' => $opponentPossibleMoves));
             // Detect if someone uses an AI to cheat on this game, and act
             if($cheater = $this->container->get('lichess.anticheat')->detectCheater($game)) {
-                $game->setStatus(Game::CHEAT);
+                $game->setStatus(Model\Game::CHEAT);
                 $game->setWinner($cheater->getOpponent());
                 $game->addEventToStacks(array('type' => 'end'));
             }
