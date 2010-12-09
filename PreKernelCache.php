@@ -37,7 +37,7 @@ if('/how-many-players-now' === $url) {
         $nb = 0;
         $limit = time() - $timeout;
         foreach($it as $i) {
-            $storage->get($i['key']); // clear invalidated entries
+            $storage->ping($i['key']); // clear invalidated entries
             if($i['mtime'] >= $limit) ++$nb;
         }
         $storage->store('lichess.nb_players', $nb, 2);

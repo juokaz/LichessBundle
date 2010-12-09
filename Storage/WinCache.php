@@ -19,6 +19,11 @@ class WinCache implements StorageInterface
         return wincache_ucache_delete($key);
     }
 
+    public function ping($key)
+    {
+        return false;
+    }
+
     public function getIterator($regex)
     {
         // @todo

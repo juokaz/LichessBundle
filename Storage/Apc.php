@@ -19,6 +19,11 @@ class Apc implements StorageInterface
         return apc_delete($key);
     }
 
+    public function ping($key)
+    {
+        return apc_fetch($key);
+    }
+
     public function getIterator($regex)
     {
         return new \APCIterator('user', $regex, APC_ITER_MTIME | APC_ITER_KEY, 100, APC_LIST_ACTIVE);
