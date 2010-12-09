@@ -5,6 +5,7 @@ namespace Bundle\LichessBundle\DependencyInjection;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Reference;
 
 class LichessExtension extends Extension
 {
@@ -23,22 +24,29 @@ class LichessExtension extends Extension
         $loader->load('security.xml');
         $loader->load('services.xml');
 
-        if (!isset($config['db_driver'])) {
-            throw new \InvalidArgumentException('You must provide the lichess.db_driver configuration');
+        if (isset($config['db_driver'])) {
+            try {
+                $loader->load(sprintf('%s.xml', $config['db_driver']));
+            } catch (\InvalidArgumentException $e) {
+                throw new \InvalidArgumentException(sprintf('The db_driver "%s" is not supported by forum', $config['db_driver']));
+            }
         }
-
-        try {
-            $loader->load(sprintf('%s.xml', $config['db_driver']));
-        } catch (\InvalidArgumentException $e) {
-            throw new \InvalidArgumentException(sprintf('The db_driver "%s" is not supported by forum', $config['db_driver']));
-        }
-
+        
         if(isset($config['ai']['class'])) {
             $container->setParameter('lichess.ai.class', $config['ai']['class']);
         }
 
         if(isset($config['storage']['class'])) {
             $container->setParameter('lichess.storage.class', $config['storage']['class']);
+        }
+        if(isset($config['storage']['options']) && is_array($config['storage']['options'])) {
+            foreach ($config['storage']['options'] as $key => $option) {
+                if (strpos($key, 'service_') === 0) {
+                    $container->getDefinition('lichess_storage')->addArgument(new Reference($option));
+                } else {
+                    $container->getDefinition('lichess_storage')->addArgument($option);
+                }
+            }
         }
 
         if(isset($config['translation']['remote_domain'])) {
