@@ -27,6 +27,8 @@
         <parameter key="lichess.anticheat.turns">10</parameter>
 
         <parameter key="lichess.messenger.class">Bundle\LichessBundle\Chess\Messenger</parameter>
+
+        <parameter key="lichess.storage.class">Bundle\LichessBundle\Storage\Apc</parameter>
     </parameters>
 
     <services>
